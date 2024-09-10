@@ -1,6 +1,16 @@
+[project]
+name="cpp_extension"
+requires-python=">=3.4"
+readme="README.md"
+dependencies=['torch']
+
+version="0.0.1"
+
+[project.urls]
+repository="https://github.com/pytorch/extension-cpp"
+
 [build-system]
-requires = [
-    "setuptools",
-    "torch",
-]
-build-backend = "setuptools.build_meta"
+requires = ["meson-python", "ninja", "torch"]
+build-backend = 'mesonpy'
+
+
