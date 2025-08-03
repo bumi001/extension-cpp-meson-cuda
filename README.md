@@ -7,6 +7,14 @@
 
 This example specifically illustrates the use of `meson` to build, install and use a torch C++ extension.
 
+**Preliminaries**
+
+You may have to install the following packages in your virtual environment.
+
+```
+pip install numpy torch meson-python ninja expecttest patchelf
+```
+
 **Using meson.build to build**
 
 To build, use the following command:
@@ -34,7 +42,7 @@ On my system I type:
 pip install cpp_extension-0.0.1-cp313-abi3-linux_x86_64.whl
 ```
 
-This will install the package to your site_packages/extension_cpp directorry under your virtual environment. You should see a
+This installs the package to site_packages/extension_cpp directorry under my virtual environment. You should see a
 _C.abi3.so file there.
 
 **Running the tests**
@@ -54,7 +62,7 @@ Ran 8 tests in 1.404s
 OK
 ```
 
----
+___
 
 See [here](https://pytorch.org/tutorials/advanced/cpp_custom_ops.html) for the accompanying tutorial.
 This repo demonstrates how to write an example `extension_cpp.ops.mymuladd`
