@@ -13,4 +13,5 @@ repository="https://github.com/pytorch/extension-cpp"
 requires = ["meson-python", "ninja", "torch"]
 build-backend = 'mesonpy'
 
-
+[tool.meson-python]
+limited-api = true

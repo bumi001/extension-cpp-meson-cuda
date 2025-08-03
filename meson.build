@@ -1,4 +1,4 @@
-project('qcd_ml_accel', 'cpp', version:'0.0.1'
+project('qcd_ml_accel', 'c', 'cpp', 'cuda', version:'0.0.1'
   , default_options : ['cpp_std=c++17'])
 
 fs = import('fs')
@@ -16,7 +16,7 @@ pydep = python.dependency()
 # Headers and shared objects from torch                                          #
 # Obtain include and library paths from torch installation.
 torch_include_dirs = []
-foreach tin: run_command(python, ['-c', 'import torch.utils.cpp_extension; print("\\n".join(torch.utils.cpp_extension.include_paths()))'], check: true).stdout().split('\n')
+foreach tin: run_command(python, ['-c', 'import os; import torch.utils.cpp_extension; print("\\n".join([os.path.relpath(p, os.getcwd()) for p in torch.utils.cpp_extension.include_paths()]))'], check: true).stdout().split('\n')
   tins = tin.strip()
   if tins != ''
     if fs.is_dir(tins)
@@ -63,16 +63,16 @@ endforeach
 # Defines that are required for torch compatibility                              #
 
 # ABI compatibility
-cxx11abi = run_command(python, ['-c', 'import torch; print(torch._C._GLIBCXX_USE_CXX11_ABI)']).stdout().strip()
-add_global_arguments('-D_GLIBCXX_USE_CXX11_ABI=@0@'.format(cxx11abi), language: 'cpp')
-
-
+cxx11abi = run_command(python, ['-c', 'import torch; print(torch._C._GLIBCXX_USE_CXX11_ABI)'], check: true).stdout().strip()
+cxx11abi = cxx11abi.to_lower().contains('true') ? 1 : 0
+add_project_arguments('-D_GLIBCXX_USE_CXX11_ABI=@0@'.format(cxx11abi), language: 'cpp')
 
 python.extension_module(
     '_C'
-    , ['extension_cpp/csrc/muladd.cpp']
+    , ['extension_cpp/csrc/muladd.cpp', 'extension_cpp/csrc/cuda/muladd.cu']
     , dependencies: torch_deps
     , install:true
+    , limited_api: '3.9'
     , subdir: 'extension_cpp'
     , cpp_args: ['-DTORCH_EXTENSION_NAME=_C']
     , include_directories: torch_includes)
