@@ -7,7 +7,7 @@
 
 This example specifically illustrates the use of `meson` to build, install and use a torch C++ extension.
 
-**Using meson-build**
+**Using meson.build to build**
 
 To build, use the following command:
 
