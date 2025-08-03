@@ -1,4 +1,4 @@
-# C++/CUDA Extensions in PyTorch (Passes CPU and GPU tests)
+# Compile C++/CUDA Extensions in PyTorch with Meson and Meson-Python (Passes CPU and GPU tests)
 
 - This repo includes the latest .cpp and .cu code from pytorch/extension-cpp.
 - It uses PyMODINIT_FUNC and PyModuleDef_Init
