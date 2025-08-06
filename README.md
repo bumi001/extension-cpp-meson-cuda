@@ -29,7 +29,7 @@ Note that the `--no-build-isolation` is required, because the extension needs to
 the torch shared objects. When running without `--no-build-isolation`, it will link against the
 temporary torch installation which is removed after the build process is finished.
 
-Also note that python -m build is not recommended. It will result in an unresolved symbol when you try to run the tests.
+Also note that `python -m build` is not recommended. It will result in an unresolved symbol when you try to run the tests.
 
 I am using Python 3.13 and on my system, the resulting wheel is named cpp_extension-0.0.1-cp313-abi3-linux_x86_64.whl.
 It is important that you see abi3 in the name of the wheel.
