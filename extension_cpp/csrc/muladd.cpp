@@ -25,9 +25,6 @@ PyInit__C(void)
 
 namespace extension_cpp {
 
-c10::DispatchKey dk_m = c10::DispatchKey::ZeroTensor;
-
-at::Tensor mymuladd_cpu(const at::Tensor& a, const at::Tensor& b, double c) {
   TORCH_CHECK(a.sizes() == b.sizes());
   TORCH_CHECK(a.dtype() == at::kFloat);
   TORCH_CHECK(b.dtype() == at::kFloat);
