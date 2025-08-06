@@ -5,7 +5,7 @@
 - It sets up Py_LIMITED_API correctly
 - It enables compilation with CUDA support
 
-This example specifically illustrates the use of `meson` and 'meson-python` to build, install and use a torch C++ extension.
+This example specifically illustrates the use of `meson` and `meson-python` to build, install and use a torch C++ extension.
 
 **Preliminaries**
 
